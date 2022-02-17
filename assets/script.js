@@ -11,3 +11,32 @@ $("#searchTerm").keypress(function(event){
             $("#searchBtn").click();
     }
 });
+
+$("#searchBtn").on("click", function() {
+
+    $('#forecastH5').addClass('show');
+
+    // value of input from user
+    city = $("#searchTerm").val();
+
+    // Clear the input box
+    $("#searchTerm").val("");
+
+    // URL call to API
+    const queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
+
+    $.ajax({
+        url: queryUrl,
+        method: "GET"
+    })
+    .then(function (response){
+
+        console.log(response)
+
+        console.log(response.name)
+        console.log(response.weather[0].icon)
+
+        let tempF = (response.main.temp - 273.15) * 1.80 + 32;
+        console.log
+    })
+})
